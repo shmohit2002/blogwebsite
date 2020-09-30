@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block title %}Edit Post...{% endblock %}
+</head>
+<body>
+{% block content %}
+{% if user.is_authenticated %}
+{% if user.id == post.author.id %}
+
+<h1>Update Posts...</h1>
+<br/><br/>
+<div class="form-group">
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.media }}
+    {{ form.as_p }}
+    <button class="btn btn-warning">Update</button>
+</form>
+    </div>
+{% else %}
+You are not allowed here you know!
+{% endif %}
+{% else %}
+You are not allowed here you know!
+{% endif %}
+
+{% endblock %}
+</body>
+</html>
